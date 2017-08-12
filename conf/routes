@@ -1,0 +1,15 @@
+# User Account
+GET         /funds/:userId                                          @controllers.UserController.getFunds(userId: String)
+POST        /user_account                                           @controllers.UserController.createUser
+GET         /users                                                  @controllers.UserController.allUsers
+
+# Funds transfer
+POST        /transfer_funds                                         @controllers.FundsTransferController.transferFunds
+GET         /transfer_funds                                         @controllers.FundsTransferController.allTransfers
+
+##### Swagger UI API documentation ####
+GET         /                                                       @controllers.Assets.at(path="/public", file = "index.html")
+GET         /assets/*file                                           @controllers.Assets.at(path="/public", file)
+GET         /doc                                                    @controllers.Default.redirect(to = "/doc/")
+GET         /doc/                                                   @controllers.Assets.at(path="/public/swagger", file = "index.html")
+GET         /doc/*file                                              @controllers.Assets.at(path="/public/swagger", file)

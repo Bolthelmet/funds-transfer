@@ -1,0 +1,131 @@
+<html>
+<head>
+    <title>Fleek Coupons: Error Codes & Responses</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw=="
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Fleek Middleware</h1>
+
+            <h2>Error Codes & Responses</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <a href="/apidoc/">Back to API documentation</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>Common HTTP status codes</h3>
+            <table class="table table-striped">
+                <tr>
+                    <th>Code</th>
+                    <th>Text</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>400</td>
+                    <td>Bad Request</td>
+                    <td>
+                        The request was invalid or cannot be otherwise served. Make sure you sent all required
+                        parameters and the body of the request is valid. An accompanying error message will
+                        explain further.
+                    </td>
+                </tr>
+                <tr>
+                    <td>401</td>
+                    <td>Unauthorized</td>
+                    <td>
+                        Authentication credentials were missing or incorrect. Make sure you have API key and session ID
+                        sent in the request.
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>Not Found</td>
+                    <td>
+                        The request is understood, but it has been refused or access is not allowed. An accompanying
+                        error message can explain further.
+                    </td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>Internal Server Error</td>
+                    <td>
+                        Something is broken in the server side and client cannot do anything to fix the error.
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>Error Messages</h3>
+
+            <p>Error messages are provided in JSON format. For example, an error might look like this:</p>
+            <code>
+                {"code": 1, "msg": "Client update required"}
+            </code>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>Error Codes</h3>
+
+            <p>
+                In addition to descriptive error text, error messages contain machine-parseable codes. While the text
+                for
+                an error message may change, the codes will stay the same. If you see an response which is not listed in
+                the above table, then fall back to the HTTP status code in order to determine the best way to address
+                the error.
+            </p>
+
+            <table class="table table-striped">
+                <tr>
+                    <th>Code</th>
+                    <th>Text</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Common error</td>
+                    <td>Usually no more details are available because client cannot do anything to fix the error.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Client update required</td>
+                    <td>Version of the client is not supported and it must be updated.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Invalid session ID</td>
+                    <td>Session ID is invalid or it is expired. Client must provide a valid session ID.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Invalid API key</td>
+                    <td>API key is invalid. Client must provide a valid API key.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Invalid JSON</td>
+                    <td>Provided JSON payload is invalid. Client must check the request and send a valid payload.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

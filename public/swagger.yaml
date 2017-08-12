@@ -1,0 +1,139 @@
+  swagger: '2.0'
+  info:
+    version: 1.0.0
+    title: Funds Transfer
+    description: API to create users and transfer money
+  basePath: /
+  consumes:
+    - application/json
+  produces:
+    - application/json
+
+  paths:
+    '/funds/{userId}':
+      get:
+        tags:
+          - User Account
+        summary: Returns account funds
+        parameters:
+          - name: userId
+            in: path
+            required: true
+            description: Account owner id
+            type: string
+        responses:
+          '200':
+            description: User Account was found
+            schema:
+              $ref: '#/definitions/AccountData'
+          '404':
+            description: User not found
+
+    '/user_account':
+      post:
+        tags:
+          - User Account
+        summary: Create user account
+        parameters:
+          - name: account
+            in: body
+            required: true
+            schema:
+              $ref: '#/definitions/AccountData'
+        responses:
+          '202':
+            description: Account was created
+          '409':
+            description: Account with this Id already exists
+          '400':
+            description: Malformed body
+
+    '/users':
+      get:
+        tags:
+          - User Account
+        summary: Returns all accounts
+        responses:
+          '200':
+            description: User Accounts were found
+            schema:
+              type: array
+              items:
+                $ref: '#/definitions/AccountData'
+
+    '/transfer_funds':
+      get:
+        tags:
+          - Funds Transfer
+        summary: Return all conducted transfers
+        responses:
+          '200':
+            description: Transfers
+            schema:
+              type: array
+              items:
+                $ref: '#/definitions/TransferData'
+      post:
+        tags:
+          - Funds Transfer
+        summary: Send funds to another user
+        parameters:
+          - name: user_id
+            in: header
+            required: true
+            type: string
+          - name: goal
+            in: body
+            required: true
+            schema:
+              $ref: '#/definitions/TransferFundsRequest'
+        responses:
+          '202':
+            description: Transfer was successful
+          '400':
+            description: Not enough funds/ Malformed request
+          '404':
+            description: Wrong sender/reciever Id
+
+
+
+
+  definitions:
+    AccountData:
+      description: user account data
+      type: object
+      required:
+        - id
+        - funds_euros
+      properties:
+        id:
+          type: string
+        funds_euros:
+          type: number
+
+    TransferFundsRequest:
+      description: funds transfer addressat
+      type: object
+      required:
+        - reciever_id
+        - funds_euros
+      properties:
+        reciever_id:
+          type: string
+        funds_euros:
+          type: number
+
+    TransferData:
+      description: funds transfer between two users
+      type: object
+      required:
+        - sender_id
+        - reciever_id
+        - funds_euros
+      properties:
+        sender_id:
+          type: string
+        reciever_id:
+          type: string
+        funds_euros:
+          type: number
