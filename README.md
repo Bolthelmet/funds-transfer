@@ -1,5 +1,6 @@
 # Simple Accounts system
-Endpoints to create user, transfer money and retrieve data about users and transfers made are presented
+Endpoints to create user, transfer money and retrieve data about users and transfers made are presented.
+In-memory mode H2 database is used as inmemory storage so every time server is restarted data will be whiped out.
 
 # Instructions
 ## Start server
